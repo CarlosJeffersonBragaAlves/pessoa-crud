@@ -1,0 +1,36 @@
+.dialog{
+  height: 80vh;
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cabecalho{
+  display: flex;
+  justify-content: space-between;
+  height: 20px;
+  border-bottom: 1px solid black;
+  padding: 10px;
+  align-items: center;
+}
+
+.cabecalho__titulo{
+  margin: 0;
+}
+
+.conteudo{
+  height: calc(100% - 50px);
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.rodape{
+  display: flex;
+  justify-content: flex-end;
+  height: 40px;
+  border-top: 1px solid black;
+  padding: 10px;
+}
+
