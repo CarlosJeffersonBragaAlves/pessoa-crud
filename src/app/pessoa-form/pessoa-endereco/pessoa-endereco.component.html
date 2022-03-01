@@ -1,9 +1,57 @@
-<div class="grid">
-  <mat-form-field appearance="outline" class="col-2">
-    <mat-label>Estado Civil</mat-label>
-    <mat-select>
-      <mat-option value="feminino">Feminino</mat-option>
-      <mat-option value="masculino">Masculino</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
+<form [formGroup]="pessoaForm">
+  <div formGroupName="endereco" class="grid">
+    <mat-form-field appearance="outline" class="col-3">
+      <mat-label>CEP</mat-label>
+      <input matInput placeholder="CEP" mask="00000-000" (keyup)="checkCep()" formControlName="cep" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-7">
+      <mat-label>Logradouro</mat-label>
+      <input matInput placeholder="Logradouro" formControlName="logradouro" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-2">
+      <mat-label>Numero</mat-label>
+      <input matInput placeholder="Numero" formControlName="numero" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3">
+      <mat-label>Bairro</mat-label>
+      <input matInput placeholder="Bairo" formControlName="bairro" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-6">
+      <mat-label>Complemento</mat-label>
+      <input matInput placeholder="Bairo" formControlName="complemento" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3">
+      <mat-label>Cidade</mat-label>
+      <input matInput placeholder="Cidade" formControlName="cidade" [disabled]="true"/>
+    </mat-form-field>
+  </div>
+</form>
+
+<!-- <div class="cards">
+  <mat-card class="card__box">
+    <mat-card-title class="card__titulo">Pricipal</mat-card-title>
+    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    <mat-card-content class="card__conteudo">
+      <p> Rua Julieta Madalena, 55 - Vilaconcordia
+         {{ (e.logradouro + ', ' + e.numero + ' - ' +
+        e.bairro) | titlecase }}
+      </p>
+       <p>{{ e.complemento | titlecase }}</p>
+      <p>
+        Paranatinga-MT
+         {{ (e.cidade.desc | titlecase) + ' - ' +
+       (e.cidade.uf.sigla | uppercase) }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="card__botton">
+      <button mat-raised-button class="card__botton-delete" color="warn">
+        <mat-icon>delete</mat-icon>
+        Deletar
+      </button>
+      <button mat-raised-button class="card__botton-editar color__button-editar" >
+        <mat-icon>edit</mat-icon>
+        Editar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div> -->

@@ -1,36 +1,42 @@
-<section>
-  <form class="grid">
+<section class="actions">
+  <button mat-raised-button class="color__button-ok">
+    <mat-icon>add</mat-icon>
+    Adicionar
+  </button>
+</section>
+<section class="container">
+  <form class="grid" [formGroup]="pessoaForm">
 
-    <mat-form-field appearance="outline" class="col-5">
+    <mat-form-field appearance="outline" class="col-6">
       <mat-label>Nome</mat-label>
-      <input matInput placeholder="Nome" />
+      <input matInput placeholder="Nome" formControlName="nome" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col-3">
       <mat-label>CPF</mat-label>
-      <input matInput placeholder="CPF" />
+      <input matInput placeholder="CPF" formControlName="cpf" mask="000.000.000-00"/>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="col-2">
+    <mat-form-field appearance="outline" class="col-3">
       <mat-label>RG</mat-label>
-      <input matInput placeholder="RG" />
+      <input matInput placeholder="RG" formControlName="rg" mask="0000000-0" />
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="col-2" >
-      <mat-label>Choose a date</mat-label>
-      <input matInput [matDatepicker]="picker">
+    <mat-form-field appearance="outline" class="col-2" (click)="picker.open()">
+      <mat-label>Data de Nascimento</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dataNacimento"  [disabled]="true">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
+      <mat-datepicker #picker disabled="false"></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="col-5">
+    <mat-form-field appearance="outline" class="col-6">
       <mat-label>Email</mat-label>
-      <input matInput placeholder="Email" />
+      <input matInput placeholder="Email" formControlName="email" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col-2">
       <mat-label>Sexo</mat-label>
-      <mat-select>
+      <mat-select formControlName="sexo">
         <mat-option value="feminino">Feminino</mat-option>
         <mat-option value="masculino">Masculino</mat-option>
       </mat-select>
@@ -38,7 +44,7 @@
 
     <mat-form-field appearance="outline" class="col-2">
       <mat-label>Estado Civil</mat-label>
-      <mat-select>
+      <mat-select formControlName="estadoCivil">
         <mat-option value="feminino">Feminino</mat-option>
         <mat-option value="masculino">Masculino</mat-option>
       </mat-select>
@@ -49,11 +55,11 @@
       <mat-expansion-panel [expanded]="true" >
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <mat-icon>account_circle</mat-icon>
-            Endereço
+            <mat-icon>home</mat-icon>
+             <p>Endereço</p>
           </mat-panel-title>
         </mat-expansion-panel-header>
-          <app-pessoa-endereco></app-pessoa-endereco>
+          <app-pessoa-endereco [pessoaForm]="pessoaForm"></app-pessoa-endereco>
       </mat-expansion-panel>
 
       <mat-expansion-panel [expanded]="true">
