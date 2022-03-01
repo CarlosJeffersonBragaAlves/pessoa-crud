@@ -1,5 +1,6 @@
-import { PessoaFormComponent } from './pessoa-form/Pessoa-form.component';
-import { NgModule } from '@angular/core';
+import { PessoaEnderecoComponent } from './pessoa-form/pessoa-endereco/pessoa-endereco.component';
+import { PessoaFormComponent } from './pessoa-form/pessoa-form.component';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,13 +13,21 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button'
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSelectModule} from '@angular/material/select';
+import {MatExpansionModule} from '@angular/material/expansion';
 
-
+registerLocaleData(localePt, 'pt')
 
 @NgModule({
   declarations: [
     AppComponent,
-    PessoaFormComponent
+    PessoaFormComponent,
+    PessoaEnderecoComponent
   ],
   imports: [
     BrowserModule,
@@ -31,8 +40,18 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTabsModule,
+    MatSelectModule,
+    MatExpansionModule
   ],
-  providers: [],
+  providers: [
+    // Converter para data PT-BR
+    { provide: LOCALE_ID, useValue: "pt" },
+    // Converter numeros para R$
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

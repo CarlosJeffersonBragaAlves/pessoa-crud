@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PessoaFormComponent } from './pessoa-form/Pessoa-form.component';
+import { PessoaFormComponent } from './pessoa-form/pessoa-form.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'form', pathMatch: 'full'},

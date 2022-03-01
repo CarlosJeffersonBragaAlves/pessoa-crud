@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
-  selector: 'app-Pessoa-form',
-  templateUrl: './Pessoa-form.component.html',
-  styleUrls: ['./Pessoa-form.component.scss']
+  selector: 'app-pessoa-form',
+  templateUrl: './pessoa-form.component.html',
+  styleUrls: ['./pessoa-form.component.scss']
 })
 export class PessoaFormComponent implements OnInit {
 
-  constructor() { }
+
+
+  constructor() {
+
+  }
 
   ngOnInit() {
   }
