@@ -1,0 +1,53 @@
+<form [formGroup]="contatoForm">
+  <div class="grid">
+    <mat-form-field appearance="outline" class="col-5">
+      <mat-label>Decrição</mat-label>
+      <mat-select formControlName="desc" required="true">
+        <mat-option *ngFor="let desc of descricoes" [value]="desc.label">
+          {{ desc.label | titlecase}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-6">
+      <mat-label>Telefone/Fone</mat-label>
+      <input matInput [mask]="mask" placeholder="Nome" formControlName="fone" required="true"/>
+    </mat-form-field>
+    <div class="col-1">
+      <button mat-raised-button [disabled]="itsValid" [ngClass]="isEdit ? 'color__button-editar' : 'color__button-ok'" style="height: 55px;"  (click)="isEdit ? edit() : add()">
+        <mat-icon>{{isEdit ? 'edit' : 'add'}}</mat-icon>
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="grid cards">
+  <div class="col-12 md:col-6 lg:col-4 card" *ngFor="let c of contatos; index as i;">
+
+
+        <mat-card class="card__box" [ngStyle]="{'border-left': '6px solid ' + getDescColor(c)}">
+            <mat-card-header class="card__box-cabecalho">
+                <mat-card-title class="card__box-titulo">
+                    {{ c.desc | uppercase }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="card__box-conteudo">
+                <span>
+                    {{c.fone.length == 10 ?
+                    (c.fone | mask: '(00) 0000-0000') :
+                    (c.fone | mask: '(00) 0 0000-0000')}}
+                </span>
+            </mat-card-content>
+            <mat-card-actions class="card__botton">
+              <button mat-raised-button class="card__botton-delete" color="warn" (click)="delete(i)" [disabled]="isEdit">
+                <mat-icon>delete</mat-icon>
+                Deletar
+              </button>
+              <button mat-raised-button class="card__botton-editar color__button-editar" (click)="update(i)" [disabled]="isEdit" >
+                <mat-icon>edit</mat-icon>
+                Editar
+              </button>
+            </mat-card-actions>
+        </mat-card>
+
+</div>
+</div>

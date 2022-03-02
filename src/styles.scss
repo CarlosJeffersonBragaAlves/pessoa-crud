@@ -1,5 +1,6 @@
  @import 'primeflex/primeflex.css';
 
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -13,6 +14,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .color__button-ok{
   background-color: #2e7d32 !important ;
   color: white !important;
+}
+
+.color__button-editar:disabled, .color__button-ok:disabled{
+  background-color: #e0e0e0 !important ;
+  color: #a6a6a6 !important;
 }
 
 .color__button-editar{

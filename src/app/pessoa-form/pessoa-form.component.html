@@ -1,5 +1,5 @@
 <section class="actions">
-  <button mat-raised-button class="color__button-ok">
+  <button mat-raised-button class="color__button-ok" (click)="add()">
     <mat-icon>add</mat-icon>
     Adicionar
   </button>
@@ -65,13 +65,11 @@
       <mat-expansion-panel [expanded]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Self aware panel
+            <mat-icon>phone</mat-icon>
+            Contato
           </mat-panel-title>
-          <mat-panel-description>
-            <mat-icon>account_circle</mat-icon>
-          </mat-panel-description>
         </mat-expansion-panel-header>
-        <p>I'm visible because I am open</p>
+        <app-pessoa-contato [contatoForm]="contatoForm" [PessoaForm]="pessoaForm"></app-pessoa-contato>
       </mat-expansion-panel>
 
     </mat-accordion>

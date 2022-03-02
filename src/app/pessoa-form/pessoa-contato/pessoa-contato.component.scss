@@ -1,0 +1,39 @@
+.cards{
+  //display: flex;
+}
+
+.card{
+  padding: 12px 20px;
+}
+
+.card__box-cabecalho{
+  justify-content: center;
+}
+
+.card__box-titulo{
+  font-weight: bold;
+}
+
+.card__box-conteudo{
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.card__botton{
+  display: flex;
+  justify-content: center;
+}
+
+.card__botton-delete, .card__botton-editar{
+  width: 100%;
+  margin: 0 !important;
+  box-shadow: none;
+}
+
+.card__botton-delete{
+  border-radius: 4px 0 0 4px;
+}
+
+.card__botton-editar{
+  border-radius: 0 4px 4px 0;
+}

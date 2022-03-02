@@ -1,5 +1,6 @@
+import { PessoaService } from './../pessoa.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
@@ -10,21 +11,25 @@ import { MatAccordion } from '@angular/material/expansion';
 export class PessoaFormComponent implements OnInit {
 
   pessoaForm!: FormGroup;
+  contatoForm!: FormGroup
 
-  constructor(private fb: FormBuilder,) {
+  constructor(private fb: FormBuilder,private ps: PessoaService) {
 
   }
 
   ngOnInit() {
     this.form();
+    this.formContato()
 
+    this.pessoaForm.get('contatos')?.valueChanges.subscribe(data =>{
+      console.table(data)
+    })
 
   }
 
 
   form(){
     this.pessoaForm = this.fb.group({
-      id: [''],
       nome: [''],
       cpf: [''],
       rg: [''],
@@ -33,7 +38,6 @@ export class PessoaFormComponent implements OnInit {
       sexo: [''],
       estadoCivil: [''],
       endereco: this.fb.group({
-        id:[0],
         cidade: [{value: '',disabled: true}],
         logradouro:[''],
         numero: [''],
@@ -45,5 +49,16 @@ export class PessoaFormComponent implements OnInit {
       contatos: [[]]
 
     })
+  }
+
+  formContato(){
+    this.contatoForm = this.fb.group({
+      fone: ['',[Validators.required]],
+      desc: ['',[Validators.required]]
+    })
+  }
+
+  add(){
+    this.ps.addPessoa(this.pessoaForm.value)
   }
 }

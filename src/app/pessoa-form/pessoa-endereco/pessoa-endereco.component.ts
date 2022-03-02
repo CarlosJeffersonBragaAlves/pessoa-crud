@@ -37,7 +37,6 @@ export class PessoaEnderecoComponent implements OnInit {
     this.http.get<ViaCep>(apiURL).subscribe((data: ViaCep) => {
       console.log(data)
       const endereco: Endereco = {
-        id: this.getEndereço.id,
         bairro: this.getEndereço.bairro.length > 0 ? this.getEndereço.bairro : data.bairro,
         cep: this.getEndereço.cep,
         cidade: `${data.localidade}-${data.uf.toUpperCase()}`,

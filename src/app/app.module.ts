@@ -1,3 +1,4 @@
+import { PessoaContatoComponent } from './pessoa-form/pessoa-contato/pessoa-contato.component';
 import { PessoaEnderecoComponent } from './pessoa-form/pessoa-endereco/pessoa-endereco.component';
 import { PessoaFormComponent } from './pessoa-form/pessoa-form.component';
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
@@ -22,7 +23,12 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCardModule} from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { DialogMensagemComponent } from './shared/dialog-mensagem/dialog-mensagem.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { PessoaListComponent } from './pessoa-list/pessoa-list.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 registerLocaleData(localePt, 'pt')
 
@@ -30,7 +36,10 @@ registerLocaleData(localePt, 'pt')
   declarations: [
     AppComponent,
     PessoaFormComponent,
-    PessoaEnderecoComponent
+    PessoaEnderecoComponent,
+    PessoaContatoComponent,
+    DialogMensagemComponent,
+    PessoaListComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +61,9 @@ registerLocaleData(localePt, 'pt')
     ReactiveFormsModule,
     HttpClientModule,
     NgxMaskModule.forRoot(),
+    MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [
     // Converter para data PT-BR
