@@ -5,36 +5,18 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { BehaviorSubject } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PessoaService implements OnDestroy {
+export class PessoaService {
 
 
 
   private pessoas: Pessoa[] = [
-    {
-      nome: 'Carlos Jefferson Braga alve',
-      contatos: [{desc: 'PRINCIPAL', fone: '66984245600'}],
-      cpf: '06174181103',
-      dataNacimento: new Date(),
-      email: 'carlos@xtx.com',
-      estadoCivil: 'Solteiro',
-      rg: '11111111111',
-      sexo: 'Masculino',
-      endereco:{
-        bairro: 'Concordia',
-        cep: '78870000',
-        cidade: 'Paranatinga-MT',
-        complemento: '',
-        logradouro: 'Rua Julieta Madalena Rodrigues',
-        numero: '55'
-      }
-    }
-  ]
 
-  private $edit = new BehaviorSubject<string>('');
+  ]
 
   private mediaQueryDisplay: MediaQueryList[] = [
     this.media.matchMedia('(max-width: 1400px)'),
@@ -46,20 +28,8 @@ export class PessoaService implements OnDestroy {
   ];
 
 
-  constructor(private dialog: MatDialog, private media: MediaMatcher) {}
+  constructor(private dialog: MatDialog, private media: MediaMatcher, private _snackBar: MatSnackBar) {}
 
-
-  ngOnDestroy(): void {
-    this.$edit.unsubscribe();
-  }
-
-  get getEdit(){
-    return this.$edit.asObservable()
-  }
-
-  setEdit(value: string){
-    this.$edit.next(value)
-  }
 
   get mediaQuery(){
     return this.mediaQueryDisplay
@@ -88,5 +58,13 @@ export class PessoaService implements OnDestroy {
     });
 
     return dialogRef.afterClosed();
+  }
+
+  snackMessagem(messagem: string, duracao: number){
+    this._snackBar.open(messagem, 'Fechar', {
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      duration: duracao
+    });
   }
 }

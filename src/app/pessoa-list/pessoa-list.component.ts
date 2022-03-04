@@ -25,7 +25,6 @@ export class PessoaListComponent implements OnInit, AfterViewInit {
     'nacimento',
     'email',
     'endereço',
-    'contato',
     'strar',
   ];
   displayedColumns: string[] = this.colums.slice();
@@ -76,7 +75,6 @@ export class PessoaListComponent implements OnInit, AfterViewInit {
       this.removeColuna('email');
       this.removeColuna('nacimento');
       this.removeColuna('endereço');
-      this.removeColuna('contato');
     }
 
     this.ps.mediaQuery[0].addEventListener('change', (data) => {
@@ -106,18 +104,18 @@ export class PessoaListComponent implements OnInit, AfterViewInit {
       }
     });
 
-    this.ps.mediaQuery[4].addEventListener('change', (data) => {
-      if (this.ps.mediaQuery[4].matches) {
-        this.labelButtonAdd = 'Adicionar';
-        this.removeColuna('contato');
-      } else {
-        this.labelButtonAdd = '';
-        this.displayedColumns = this.colums.slice();
-        this.removeColuna('email');
-        this.removeColuna('nacimento');
-        this.removeColuna('endereço');
-      }
-    });
+    // this.ps.mediaQuery[4].addEventListener('change', (data) => {
+    //   if (this.ps.mediaQuery[4].matches) {
+    //     this.labelButtonAdd = 'Adicionar';
+    //     this.removeColuna('contato');
+    //   } else {
+    //     this.labelButtonAdd = '';
+    //     this.displayedColumns = this.colums.slice();
+    //     this.removeColuna('email');
+    //     this.removeColuna('nacimento');
+    //     this.removeColuna('endereço');
+    //   }
+    // });
 
     this.ps.mediaQuery[5].addEventListener('change', (data) => {
       if (this.ps.mediaQuery[5].matches) {
@@ -127,7 +125,7 @@ export class PessoaListComponent implements OnInit, AfterViewInit {
         this.removeColuna('email');
         this.removeColuna('nacimento');
         this.removeColuna('endereço');
-        this.removeColuna('contato');
+        // this.removeColuna('contato');
       }
     });
   }
@@ -175,8 +173,10 @@ export class PessoaListComponent implements OnInit, AfterViewInit {
   }
 
   edit(i: number){
-    this.ps.setEdit(i.toString())
-    this.router.navigateByUrl('/form')
+    //this.ps.setEdit(i.toString())
+    this.router.navigateByUrl('/form',{
+      state:{indexPessoa: i.toString()}
+    })
   }
 
 
@@ -184,4 +184,5 @@ export class PessoaListComponent implements OnInit, AfterViewInit {
     this.pessoas = this.ps.getPessoas
         this.dataSource.data = this.pessoas.slice()
   }
+
 }

@@ -12,16 +12,13 @@ import { MediaMatcher } from '@angular/cdk/layout';
 export class PessoaContatoComponent implements OnInit {
   @Input() contatoForm!: FormGroup;
   @Input() PessoaForm!: FormGroup;
+  @Input() indexEditPessoa!: string;
 
   mask: string = '(00) 0000-00009';
   itsValid: boolean = true;
   isEdit: boolean = false;
   indexEdit: number = 0;
   labelButtonAdd: boolean = false;
-
-
-
-
   contatos: Contato[] = [];
   descricoes: {
     label: string;
@@ -40,12 +37,11 @@ export class PessoaContatoComponent implements OnInit {
       { label: 'OUTROS', color: 'coral' },
     ];
 
+    console.log('pessoas edit index',this.indexEditPessoa)
 
-    this.ps.getEdit.subscribe(data => {
-      if(data){
-        this.contatos = this.ps.getPessoas[+data].contatos.slice();
-      }
-    })
+    if(this.indexEditPessoa?.length > 0){
+      this.contatos = this.ps.getPessoas[+this.indexEditPessoa].contatos.slice();
+    }
 
       this.labelButtonAdd = this.ps.mediaQuery[2].matches
 

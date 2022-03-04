@@ -30,6 +30,7 @@ import { PessoaListComponent } from './pessoa-list/pessoa-list.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 registerLocaleData(localePt, 'pt')
 
@@ -65,7 +66,8 @@ registerLocaleData(localePt, 'pt')
     MatDialogModule,
     MatTableModule,
     MatPaginatorModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSnackBarModule
   ],
   providers: [
     // Converter para data PT-BR

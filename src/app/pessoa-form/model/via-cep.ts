@@ -9,5 +9,5 @@ export interface ViaCep {
   gia: string
   ddd: string
   siafi: string
-
+  erro?: boolean
 }

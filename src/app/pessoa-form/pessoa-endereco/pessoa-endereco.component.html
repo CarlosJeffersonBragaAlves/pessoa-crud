@@ -2,23 +2,41 @@
   <div formGroupName="endereco" class="grid">
     <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-12 xl:col-3">
       <mat-label>CEP</mat-label>
-      <input matInput placeholder="CEP" mask="00000-000" (keyup)="checkCep()" formControlName="cep" />
+      <input matInput placeholder="CEP" mask="00000-000" (keyup)="checkCep()" formControlName="cep"  />
+      <mat-error *ngIf="this.pessoaForm.get('endereco.cep')?.hasError('required')">
+        Este Campo é Obrigatório!
+      </mat-error>
+      <mat-error *ngIf="this.pessoaForm.get('endereco.cep')?.hasError('cepInalido')">
+        CEP Invalido
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-12 xl:col-7">
       <mat-label>Logradouro</mat-label>
       <input matInput placeholder="Logradouro" formControlName="logradouro" />
+      <mat-error *ngIf="this.pessoaForm.get('endereco.logradouro')?.hasError('required')">
+        Este Campo é Obrigatório!
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-6 xl:col-2">
       <mat-label>Numero</mat-label>
       <input matInput placeholder="Numero" formControlName="numero" />
+      <mat-error *ngIf="this.pessoaForm.get('endereco.numero')?.hasError('required')">
+        Este Campo é Obrigatório!
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-6 xl:col-3">
       <mat-label>Bairro</mat-label>
       <input matInput placeholder="Bairo" formControlName="bairro" />
+      <mat-error *ngIf="this.pessoaForm.get('endereco.bairro')?.hasError('required')">
+        Este Campo é Obrigatório!
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-6 xl:col-6">
       <mat-label>Complemento</mat-label>
       <input matInput placeholder="Bairo" formControlName="complemento" />
+      <mat-error *ngIf="this.pessoaForm.get('endereco.complemento')?.hasError('required')">
+        Este Campo é Obrigatório!
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-6 xl:col-3">
       <mat-label>Cidade</mat-label>

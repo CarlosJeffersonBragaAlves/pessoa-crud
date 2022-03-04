@@ -7,11 +7,20 @@
           {{ desc.label | titlecase}}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="this.contatoForm.get('desc')?.hasError('required')">
+        *Este Campo é Obrigatório!
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-6 xl:col-6">
       <mat-label>Telefone/Fone</mat-label>
-      <input matInput [mask]="mask" placeholder="Nome" formControlName="fone" required="true"/>
+      <input matInput [mask]="mask" type="tel" placeholder="Nome" formControlName="fone" required="true"/>
+      <mat-error *ngIf="this.contatoForm.get('fone')?.hasError('required')">
+        *Este Campo é Obrigatório!
+      </mat-error>
+      <mat-error *ngIf="this.contatoForm.get('fone')?.value.length < 10">
+        *O número informado é menor que 10 caracteres!
+      </mat-error>
     </mat-form-field>
     <div class="col-12 xl:col-1">
       <button mat-raised-button [disabled]="itsValid" [ngClass]="isEdit ? 'color__button-editar' : 'color__button-ok'" class="button__contato" style="height: 55px;"  (click)="isEdit ? edit() : add()">

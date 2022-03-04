@@ -1,5 +1,9 @@
 <section class="actions">
-  <button mat-raised-button [ngClass]="isEdit? 'color__button-editar' : 'color__button-ok'" class="button__add " style="height: 55px;" (click)="isEdit ? edit() : add()">
+  <button mat-raised-button  class="button__add " style="height: 55px;" routerLink="/list" >
+    <mat-icon>arrow_back </mat-icon>
+    Voltar
+  </button>
+  <button mat-raised-button [ngClass]="isEdit? 'color__button-editar' : 'color__button-ok'" class="button__add " style="height: 55px;margin-left: 10px;" (click)="isEdit ? edit() : add()">
     <mat-icon> {{isEdit ? 'edit' : 'add'}}</mat-icon>
     {{isEdit ? 'Editar' : 'Adicionar'}}
   </button>
@@ -10,36 +14,59 @@
     <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-12 xl:col-6">
       <mat-label>Nome</mat-label>
       <input matInput placeholder="Nome" formControlName="nome" />
+      <mat-error *ngIf="this.pessoaForm.get('nome')?.hasError('required')">
+        *Este Campo é Obrigatório!
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-6 xl:col-3">
       <mat-label>CPF</mat-label>
       <input matInput placeholder="CPF" formControlName="cpf" mask="000.000.000-00"/>
+      <mat-error *ngIf="this.pessoaForm.get('cpf')?.hasError('required')">
+        *Este Campo é Obrigatório!
+      </mat-error>
+      <mat-error *ngIf="this.pessoaForm.get('cpf')?.hasError('cnpjinvalid')">
+        *CPF invalido
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-6 xl:col-3">
       <mat-label>RG</mat-label>
       <input matInput placeholder="RG" formControlName="rg" mask="0000000-0" />
+      <mat-error *ngIf="this.pessoaForm.get('rg')?.hasError('required')">
+        *Este Campo é Obrigatório!
+      </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-6 xl:col-2" (click)="picker.open()">
+    <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-6 xl:col-2" >
       <mat-label>Data de Nascimento</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="dataNacimento"  [disabled]="true">
+      <input matInput [matDatepicker]="picker" formControlName="dataNacimento" >
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker disabled="false"></mat-datepicker>
+      <mat-error *ngIf="this.pessoaForm.get('dataNacimento')?.hasError('required')">
+        *Este Campo é Obrigatório!
+      </mat-error>
     </mat-form-field>
+
+    <!-- <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-6 xl:col-2">
+      <mat-label>Data de Nascimento</mat-label>
+      <input matInput placeholder="Email" type="date"  formControlName="dataNacimento" />
+    </mat-form-field> -->
 
     <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-6 xl:col-4">
       <mat-label>Email</mat-label>
-      <input matInput placeholder="Email" formControlName="email" />
+      <input matInput placeholder="Email"  formControlName="email" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-6 xl:col-3">
       <mat-label>Sexo</mat-label>
       <mat-select formControlName="sexo">
-        <mat-option value="feminino">Feminino</mat-option>
-        <mat-option value="masculino">Masculino</mat-option>
+        <mat-option value="Feminino">Feminino</mat-option>
+        <mat-option value="Masculino">Masculino</mat-option>
       </mat-select>
+      <mat-error *ngIf="this.pessoaForm.get('sexo')?.hasError('required')">
+        *Este Campo é Obrigatório!
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-6 xl:col-3">
@@ -50,6 +77,9 @@
         <mat-option value="Divorciado">Divorciado</mat-option>
         <mat-option value="Viúvo">Viúvo</mat-option>
       </mat-select>
+      <mat-error *ngIf="this.pessoaForm.get('estadoCivil')?.hasError('required')">
+        *Este Campo é Obrigatório!
+      </mat-error>
     </mat-form-field>
 
     <mat-accordion class="col-12" multi>
@@ -58,7 +88,7 @@
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon>home</mat-icon>
-             <p>Endereço</p>
+            Endereço
           </mat-panel-title>
         </mat-expansion-panel-header>
           <app-pessoa-endereco [pessoaForm]="pessoaForm"></app-pessoa-endereco>
@@ -71,7 +101,7 @@
             Contato
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <app-pessoa-contato [contatoForm]="contatoForm" [PessoaForm]="pessoaForm"></app-pessoa-contato>
+        <app-pessoa-contato [contatoForm]="contatoForm" [PessoaForm]="pessoaForm" [indexEditPessoa]="indexEdit"></app-pessoa-contato>
       </mat-expansion-panel>
 
     </mat-accordion>
