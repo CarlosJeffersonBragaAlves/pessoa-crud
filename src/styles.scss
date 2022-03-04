@@ -27,7 +27,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 
-// .mat-dialog-container {
-// //   padding: 0 !important;
+.button__add{
+  width: auto;
+}
 
-// }
+
+@media only screen and (max-width: 768px) {
+  .button__add{
+    width: 100% !important;
+  }
+}
+

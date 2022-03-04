@@ -1,6 +1,6 @@
 <form [formGroup]="contatoForm">
   <div class="grid">
-    <mat-form-field appearance="outline" class="col-5">
+    <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-6 xl:col-5">
       <mat-label>Decrição</mat-label>
       <mat-select formControlName="desc" required="true">
         <mat-option *ngFor="let desc of descricoes" [value]="desc.label">
@@ -9,20 +9,21 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="col-6">
+    <mat-form-field appearance="outline" class="col-12 sm:col-12 md:col-6 xl:col-6">
       <mat-label>Telefone/Fone</mat-label>
       <input matInput [mask]="mask" placeholder="Nome" formControlName="fone" required="true"/>
     </mat-form-field>
-    <div class="col-1">
-      <button mat-raised-button [disabled]="itsValid" [ngClass]="isEdit ? 'color__button-editar' : 'color__button-ok'" style="height: 55px;"  (click)="isEdit ? edit() : add()">
+    <div class="col-12 xl:col-1">
+      <button mat-raised-button [disabled]="itsValid" [ngClass]="isEdit ? 'color__button-editar' : 'color__button-ok'" class="button__contato" style="height: 55px;"  (click)="isEdit ? edit() : add()">
         <mat-icon>{{isEdit ? 'edit' : 'add'}}</mat-icon>
+        {{labelButtonAdd ? (isEdit ? 'Editar' : 'Adicionar') : ''}}
       </button>
     </div>
   </div>
 </form>
 
 <div class="grid cards">
-  <div class="col-12 md:col-6 lg:col-4 card" *ngFor="let c of contatos; index as i;">
+  <div class="col-12 md:col-12 lg:col-6 xl:col-4 card" *ngFor="let c of contatos; index as i;">
 
 
         <mat-card class="card__box" [ngStyle]="{'border-left': '6px solid ' + getDescColor(c)}">

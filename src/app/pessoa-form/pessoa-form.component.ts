@@ -1,7 +1,9 @@
+import { ActivatedRoute, Router, Routes } from '@angular/router';
 import { PessoaService } from './../pessoa.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
+import { map, Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-pessoa-form',
@@ -12,9 +14,12 @@ export class PessoaFormComponent implements OnInit {
 
   pessoaForm!: FormGroup;
   contatoForm!: FormGroup
+  labelButton: boolean = false;
+  indexEdit: number = 0
+  isEdit: boolean = false
 
-  constructor(private fb: FormBuilder,private ps: PessoaService) {
 
+  constructor(private fb: FormBuilder,private ps: PessoaService,private router: Router) {
   }
 
   ngOnInit() {
@@ -24,6 +29,15 @@ export class PessoaFormComponent implements OnInit {
     this.pessoaForm.get('contatos')?.valueChanges.subscribe(data =>{
       console.table(data)
     })
+
+    this.ps.getEdit.subscribe(data => {
+      if(data){
+        this.indexEdit = +data
+        this.isEdit = true
+        this.pessoaForm.patchValue(this.ps.getPessoas[this.indexEdit])
+      }
+    })
+
 
   }
 
@@ -59,6 +73,14 @@ export class PessoaFormComponent implements OnInit {
   }
 
   add(){
-    this.ps.addPessoa(this.pessoaForm.value)
+    this.ps.addPessoa(this.pessoaForm.getRawValue())
+    this.router.navigateByUrl('/list')
   }
+
+  edit(){
+    this.ps.editPessoa(this.indexEdit,this.pessoaForm.getRawValue())
+    this.isEdit = false
+    this.router.navigateByUrl('/list')
+  }
+
 }

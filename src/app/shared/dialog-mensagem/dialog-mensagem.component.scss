@@ -3,10 +3,14 @@
 }
 
 .dialog__conteudo{
-  width: 600px;
+  width: auto
 }
 
 .dialog__actions{
   display: flex;
   justify-content: end;
+}
+
+.buttom__actionDialog{
+  width: 100%;
 }

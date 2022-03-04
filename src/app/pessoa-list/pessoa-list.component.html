@@ -1,38 +1,101 @@
-<section class="container">
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
+<section class="grid container__filter">
+  <mat-form-field class="col-12 sm:col-12 md:col-11" appearance="outline">
+    <mat-label>Filtrar</mat-label>
+    <input type="text" matInput placeholder="Pesquisa Rapida"  (keyup)="applyFilter($event)" autocomplete="off" mask="A{500}">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+  <div class="col-12 sm:col-12 md:col-1">
+    <button mat-raised-button  class="button__add color__button-ok" style="height: 55px;" routerLink="/form" >
+      <mat-icon>add</mat-icon>
+      {{labelButtonAdd}}
+    </button>
+  </div>
+</section>
+
+<section class="container" style="margin-top: 0;">
+    <table class="tabela" mat-table [dataSource]="dataSource">
 
       <!-- Position Column -->
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        <td mat-cell *matCellDef="let element; index as i"> {{i+1}} </td>
       </ng-container>
 
       <!-- Name Column -->
-      <ng-container matColumnDef="Nome">
+      <ng-container matColumnDef="nome">
         <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.nome | titlecase}} </td>
       </ng-container>
 
       <!-- Weight Column -->
-      <ng-container matColumnDef="CPF">
-        <th mat-header-cell *matHeaderCellDef> Weight </th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      <ng-container matColumnDef="cpf">
+        <th mat-header-cell *matHeaderCellDef> CPF </th>
+        <td mat-cell *matCellDef="let element"> {{element.cpf | mask: '000.000.000-00'}} </td>
       </ng-container>
 
       <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      <ng-container matColumnDef="nacimento">
+        <th mat-header-cell *matHeaderCellDef> Data de Nacimento </th>
+        <td mat-cell *matCellDef="let element"> {{element.dataNacimento | date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{ element.email }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="endereço">
+        <th mat-header-cell *matHeaderCellDef> Endereço </th>
+        <td mat-cell *matCellDef="let element">
+          {{ (element.endereco.logradouro + ', ' +
+              element.endereco.numero+ ' - ' +
+              element.endereco.bairro | titlecase) }}
+          </td>
+      </ng-container>
+
+      <ng-container matColumnDef="contato">
+        <th mat-header-cell *matHeaderCellDef> Contato </th>
+        <td mat-cell *matCellDef="let element"> {{ contatoGet(element.contatos) | mask: mask}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="strar">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let element; index as i" style="padding-right: 0 !important;">
+          <div style="display: flex; justify-content: end;" *ngIf="!labelButtonAdd; else bottunMobile">
+            <button mat-icon-button (click)="edit(i)" style="color: #1565c0;" >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deletar(i)" color="warn" >
+              <mat-icon>delete</mat-icon>
+            </button>
+
+          </div>
+          <ng-template #bottunMobile>
+            <button mat-icon-button [matMenuTriggerFor]="menu"  >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="edit(i)">
+                <mat-icon>edit</mat-icon>
+                <span>Editar</span>
+              </button>
+              <button mat-menu-item (click)="deletar(i)">
+                <mat-icon>delete</mat-icon>
+                <span>Deletar</span>
+              </button>
+            </mat-menu>
+          </ng-template>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <div *ngIf="!dataSource.data.length" style="text-align: center;">
+      Não Há Registros No Momento</div>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                    showFirstLastButtons
                    aria-label="Select page of periodic elements">
     </mat-paginator>
-  </div>
 </section>

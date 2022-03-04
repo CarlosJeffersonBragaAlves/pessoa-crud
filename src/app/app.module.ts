@@ -29,6 +29,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { PessoaListComponent } from './pessoa-list/pessoa-list.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatMenuModule} from '@angular/material/menu';
 
 registerLocaleData(localePt, 'pt')
 
@@ -63,7 +64,8 @@ registerLocaleData(localePt, 'pt')
     NgxMaskModule.forRoot(),
     MatDialogModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatMenuModule
   ],
   providers: [
     // Converter para data PT-BR

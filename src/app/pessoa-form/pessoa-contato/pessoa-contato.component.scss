@@ -3,7 +3,7 @@
 }
 
 .card{
-  padding: 12px 20px;
+  padding: 12px 0px;
 }
 
 .card__box-cabecalho{
@@ -36,4 +36,11 @@
 
 .card__botton-editar{
   border-radius: 0 4px 4px 0;
+}
+
+
+@media only screen and (max-width: 1999px) {
+  .button__contato{
+    width: 100% !important;
+  }
 }

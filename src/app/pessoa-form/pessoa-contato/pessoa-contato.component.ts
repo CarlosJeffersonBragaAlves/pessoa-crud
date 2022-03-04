@@ -2,6 +2,7 @@ import { PessoaService } from './../../pessoa.service';
 import { Contato } from './../model/contato';
 import { FormGroup, Validators } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-pessoa-contato',
@@ -16,6 +17,10 @@ export class PessoaContatoComponent implements OnInit {
   itsValid: boolean = true;
   isEdit: boolean = false;
   indexEdit: number = 0;
+  labelButtonAdd: boolean = false;
+
+
+
 
   contatos: Contato[] = [];
   descricoes: {
@@ -23,7 +28,7 @@ export class PessoaContatoComponent implements OnInit {
     color?: 'blue' | 'green' | 'deeppink' | 'blueviolet' | 'coral' | 'gold';
   }[] = [];
 
-  constructor(private ps: PessoaService) {}
+  constructor(private ps: PessoaService,private media: MediaMatcher) {}
 
   ngOnInit() {
     this.descricoes = [
@@ -34,6 +39,19 @@ export class PessoaContatoComponent implements OnInit {
       { label: 'CASA', color: 'gold' },
       { label: 'OUTROS', color: 'coral' },
     ];
+
+
+    this.ps.getEdit.subscribe(data => {
+      if(data){
+        this.contatos = this.ps.getPessoas[+data].contatos.slice();
+      }
+    })
+
+      this.labelButtonAdd = this.ps.mediaQuery[2].matches
+
+    this.ps.mediaQuery[2].addEventListener('change', data => {
+      this.labelButtonAdd = this.ps.mediaQuery[2].matches
+    })
 
     this.contatoForm.get('fone')?.valueChanges.subscribe((value) => {
       if (value.length > 10) {
