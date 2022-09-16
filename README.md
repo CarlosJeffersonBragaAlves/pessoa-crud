@@ -1,4 +1,44 @@
-# PessoaCrud
+# Pessoa CRUD 
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/carlosjeff/pessoa-crud/blob/master/README.md) 
+
+# Sobre o projeto
+
+https://carlosjeff.github.io/pessoa-crud/
+
+Desenvolvimento de um simples projeto CRUD (Pessoa) utilizando o Angular e Angular Material.
+
+
+## Layout web
+![Web 1](https://github.com/carlosjeff/assets/blob/main/Pessoa-crud/web01.png)
+
+![Web 2](https://github.com/carlosjeff/assets/blob/main/Pessoa-crud/web02.png)
+
+
+# Tecnologias utilizadas
+- HTML / CSS / TypeScript
+- Angular 13
+- Angular Material
+# Como executar o projeto
+
+Pré-requisitos: npm / yarn
+
+```bash
+# clonar repositório
+git clone https://github.com/carlosjeff/pessoa-crud.git
+# instalar dependências
+npm install
+# executar o projeto
+npm run start
+```
+
+# Autor
+
+Carlos jefferson Braga Alves
+
+www.linkedin.com/in/carlosjeff
+
+
+<!-- # PessoaCrud
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.2.
 
@@ -25,3 +65,4 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+ -->
